@@ -6,7 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "pre-commit": "npm run type-check && npm run lint && npm run format:check",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -22,6 +28,21 @@
     "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
-    "@eslint/eslintrc": "^3"
+    "@eslint/eslintrc": "^3",
+    "prettier": "^3",
+    "@trivago/prettier-plugin-sort-imports": "^4",
+    "eslint-plugin-simple-import-sort": "^12",
+    "husky": "^9",
+    "lint-staged": "^15"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "tsc --noEmit --skipLibCheck",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss}": [
+      "prettier --write"
+    ]
   }
 }
