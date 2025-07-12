@@ -6,6 +6,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 import { SignOut, Spinner } from 'phosphor-react';
 
+import Avatar from './AccountButton/Avatar';
 import GoogleIcon from './icons/GoogleIcon';
 
 export default function LoginButton() {
@@ -37,7 +38,7 @@ export default function LoginButton() {
   if (status === 'loading') {
     return (
       <div className="flex items-center justify-center">
-        <Spinner className="h-6 w-6 animate-spin text-blue-600" />
+        <Spinner className="h-6 w-6 animate-spin text-black dark:text-white" />
       </div>
     );
   }
@@ -45,14 +46,11 @@ export default function LoginButton() {
   if (session) {
     return (
       <div className="flex items-center justify-end space-y-4">
-        <div className="p-4n flex items-start space-x-4">
-          {session.user?.image && (
-            <img
-              src={session.user.image}
-              alt={session.user.name || '사용자'}
-              className="h-12 w-12 rounded-full border-2 border-gray-200"
-            />
-          )}
+        <div className="flex items-start space-x-4 p-4">
+          <Avatar
+            src={session.user?.image}
+            alt={session.user?.name || '사용자'}
+          />
           <div className="flex-1">
             <p className="font-medium text-gray-900 dark:text-white">
               {session.user?.name || '사용자'}

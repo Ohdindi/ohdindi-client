@@ -3,9 +3,10 @@
 import { useEffect } from 'react';
 
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import OhdindiLogo from '@/assets/ohdindi-logo.svg';
+import OhdindiLogo from '@/assets/ohdindi-logo.png';
 import LoginButton from '@/components/LoginButton';
 
 export default function SignIn() {
@@ -14,7 +15,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (status === 'authenticated' && session) {
-      router.push('/upload');
+      router.push('/');
     }
   }, [session, status, router]);
 
@@ -33,7 +34,12 @@ export default function SignIn() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
       <div className="mb-8 text-center">
-        <OhdindiLogo className="mx-auto mb-4 h-32 w-32 fill-black dark:fill-white" />
+        <Image
+          src={OhdindiLogo}
+          alt="Ohdindi Logo"
+          className="mx-auto mb-4 h-32 w-32"
+          priority
+        />
         <h1 className="mb-2 text-3xl font-bold text-gray-800 dark:text-gray-100">
           어딘디
         </h1>
