@@ -5,15 +5,16 @@ import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-export default function Home() {
+import OhdindiLogo from '@/assets/ohdindi-logo.svg';
+import LoginButton from '@/components/LoginButton';
+
+export default function SignIn() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (status === 'authenticated' && session) {
       router.push('/upload');
-    } else {
-      router.push('/auth/signin');
     }
   }, [session, status, router]);
 
@@ -31,7 +32,16 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
-      home page
+      <div className="mb-8 text-center">
+        <OhdindiLogo className="mx-auto mb-4 h-32 w-32 fill-black dark:fill-white" />
+        <h1 className="mb-2 text-3xl font-bold text-gray-800 dark:text-gray-100">
+          어딘디
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400">
+          촬영 로케이션 AI 코디네이터
+        </p>
+      </div>
+      <LoginButton />
     </div>
   );
 }
