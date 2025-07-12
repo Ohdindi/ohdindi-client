@@ -34,7 +34,7 @@ export default function AccountButton() {
 
         {/* Dropdown arrow */}
         <svg
-          className={`h-4 w-4 text-gray-400 transition-transform duration-200 ${
+          className={`h-3 w-3 text-stone-400 transition-transform duration-200 ${
             isDropdownOpen ? 'rotate-180' : ''
           }`}
           fill="none"
@@ -60,9 +60,9 @@ export default function AccountButton() {
           />
 
           {/* Dropdown content */}
-          <div className="absolute top-full right-0 z-20 mt-2 w-64 rounded-lg bg-white pt-2 shadow-xl dark:bg-black dark:shadow-gray-800">
+          <div className="absolute top-full right-0 z-20 mt-2 w-64 rounded-lg bg-white pt-2 shadow-xl dark:bg-black dark:shadow-stone-700">
             {/* User info in dropdown */}
-            <div className="px-4 py-3 dark:border-gray-700">
+            <div className="px-4 py-3 dark:border-stone-700">
               <div className="flex items-center space-x-3">
                 <Avatar
                   src={session.user?.image}
@@ -70,10 +70,10 @@ export default function AccountButton() {
                 />
 
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">
+                  <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
                     {session.user?.name || 'User'}
                   </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-stone-500 dark:text-stone-400">
                     {session.user?.email}
                   </p>
                 </div>
@@ -82,17 +82,17 @@ export default function AccountButton() {
 
             {/* Menu items */}
             <div className="pt-2">
-              <div className="border-t border-gray-100 dark:border-gray-700" />
+              <div className="border-t border-stone-100 dark:border-stone-700" />
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="flex w-full items-center rounded-b-lg px-4 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                className="flex w-full items-center rounded-b-lg px-4 py-2 text-xs text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
               >
                 <SignOut
                   size={26}
                   color="red"
                   weight="fill"
-                  className="cursor-pointer p-1 transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  className="cursor-pointer p-1 transition-colors duration-200 hover:bg-stone-50 dark:hover:bg-stone-800"
                 />
                 로그아웃
               </button>

@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+/* Custom Font Definitions */
+@font-face {
+  font-family: 'neurimboGothic';
+  src: url('/fonts/neurimboGothic.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #080808;
@@ -10,6 +19,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading:
+    'neurimboGothic', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo',
+    sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,4 +38,18 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+/* Heading font styles */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+/* Base layer utilities for heading font */
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
 }

@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: '어딘디, Ohdindi',
   description: '촬영 로케이션 AI 코디네이터',
+  icons: {
+    icon: '/icons/favicon.ico',
+  },
 };
 
 export default function RootLayout({

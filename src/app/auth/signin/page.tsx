@@ -40,10 +40,10 @@ export default function SignIn() {
           className="mx-auto mb-4 h-32 w-32"
           priority
         />
-        <h1 className="mb-2 text-3xl font-bold text-gray-800 dark:text-gray-100">
+        <h1 className="mb-2 text-5xl text-stone-800 dark:text-stone-100">
           어딘디
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-stone-600 dark:text-stone-400">
           촬영 로케이션 AI 코디네이터
         </p>
       </div>

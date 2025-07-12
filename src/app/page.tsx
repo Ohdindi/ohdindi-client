@@ -5,13 +5,15 @@ import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
+import TopHeader from '@/components/TopHeader';
+
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (status === 'authenticated' && session) {
-      router.push('/upload');
+      router.push('/');
     } else {
       router.push('/auth/signin');
     }
@@ -25,13 +27,12 @@ export default function Home() {
     );
   }
 
-  if (status === 'authenticated' && session) {
-    return null; // 대시보드로 리다이렉트되는 동안 빈 화면
-  }
-
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4">
-      home page
+    <div className="flex min-h-screen">
+      <TopHeader />
+      <main className="flex w-full items-center justify-center">
+        어딘디, 메인페이지
+      </main>
     </div>
   );
 }
