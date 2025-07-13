@@ -19,13 +19,25 @@ export default function ContinuityAnalysisStep() {
   const router = useRouter();
   const [isAnalyzing, setIsAnalyzing] = useState(true);
   const [, setAnalysisComplete] = useState(false);
-  const [uploadedFileName, setUploadedFileName] = useState('');
+  const [uploadedFileNames, setUploadedFileNames] = useState<string[]>([]);
 
   useEffect(() => {
-    // Get uploaded file name from localStorage
-    const fileName = localStorage.getItem('continuityFile');
-    if (fileName) {
-      setUploadedFileName(fileName);
+    // Get uploaded file names from localStorage
+    const fileNamesJson = localStorage.getItem('continuityFiles');
+    if (fileNamesJson) {
+      try {
+        const fileNames = JSON.parse(fileNamesJson);
+        if (Array.isArray(fileNames)) {
+          setUploadedFileNames(fileNames);
+        }
+      } catch (error) {
+        console.error('Error parsing file names:', error);
+        // Fallback to old single file format
+        const singleFileName = localStorage.getItem('continuityFile');
+        if (singleFileName) {
+          setUploadedFileNames([singleFileName]);
+        }
+      }
     }
 
     // Simulate analysis process
@@ -55,20 +67,58 @@ export default function ContinuityAnalysisStep() {
       onBack={handleBack}
     >
       <div className="space-y-8">
-        {/* File Info */}
-        <div className="rounded-2xl border border-zinc-200 p-6">
-          <div className="flex items-center space-x-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-              <FileText size={24} weight="fill" className="text-blue-500" />
-            </div>
-            <div>
-              <p className="font-medium text-zinc-900 dark:text-zinc-50">
-                {uploadedFileName || '콘티 파일'}
-              </p>
-              <p className="text-sm text-zinc-500 dark:text-zinc-300">
-                업로드 완료
-              </p>
-            </div>
+        {/* Files Info */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
+            분석 중인 콘티 파일 ({uploadedFileNames.length}개)
+          </h3>
+          <div className="space-y-3">
+            {uploadedFileNames.length > 0 ? (
+              uploadedFileNames.map((fileName, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-zinc-200 p-4 dark:border-zinc-700"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+                      <FileText
+                        size={20}
+                        weight="fill"
+                        className="text-blue-500"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-medium text-zinc-900 dark:text-zinc-50">
+                        {fileName}
+                      </p>
+                      <p className="text-sm text-zinc-500 dark:text-zinc-300">
+                        업로드 완료
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="rounded-2xl border border-zinc-200 p-6 dark:border-zinc-700">
+                <div className="flex items-center space-x-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+                    <FileText
+                      size={24}
+                      weight="fill"
+                      className="text-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-medium text-zinc-900 dark:text-zinc-50">
+                      콘티 파일
+                    </p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-300">
+                      업로드 완료
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -83,7 +133,9 @@ export default function ContinuityAnalysisStep() {
                   className="animate-spin text-zinc-400 dark:text-zinc-600"
                 />
                 <p className="text-lg font-medium text-zinc-900 dark:text-zinc-50">
-                  콘티 분석 중...
+                  {uploadedFileNames.length > 1
+                    ? `${uploadedFileNames.length}개 콘티 분석 중...`
+                    : '콘티 분석 중...'}
                 </p>
                 <p className="text-sm text-zinc-500">
                   AI가 콘티의 분위기, 콘셉트, 시간대를 분석하고 있습니다
@@ -135,7 +187,9 @@ export default function ContinuityAnalysisStep() {
                   분석 완료!
                 </p>
                 <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                  콘티에 맞는 최적의 촬영 장소를 찾았습니다
+                  {uploadedFileNames.length > 1
+                    ? `${uploadedFileNames.length}개 콘티에 맞는 최적의 촬영 장소를 찾았습니다`
+                    : '콘티에 맞는 최적의 촬영 장소를 찾았습니다'}
                 </p>
               </div>
 

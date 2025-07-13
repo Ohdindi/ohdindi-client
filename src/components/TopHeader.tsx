@@ -14,7 +14,7 @@ export default function TopHeader() {
   const router = useRouter();
 
   return (
-    <header className="fixed top-0 right-0 z-30 flex w-full items-center justify-between bg-zinc-50/80 px-8 py-2 backdrop-blur-lg dark:bg-zinc-950/20">
+    <header className="fixed top-0 right-0 z-30 flex w-full items-center justify-between bg-zinc-50/10 px-8 py-2 backdrop-blur-sm dark:bg-zinc-950/20">
       <div
         className="flex cursor-pointer items-start space-x-1 p-1"
         onClick={() => {

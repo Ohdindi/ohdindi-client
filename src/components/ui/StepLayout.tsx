@@ -34,10 +34,11 @@ export default function StepLayout({
       <div className="fixed top-16 z-20 w-full pb-3">
         <div className="h-0.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-900">
           <div
-            className="h-0.5 rounded-full bg-zinc-800 transition-all duration-300 dark:bg-zinc-200"
+            className="h-0.5 rounded-full bg-zinc-800 transition-all duration-300 ease-in-out dark:bg-zinc-200"
             style={
               {
                 width: `${(currentStep / totalSteps) * 100}%`,
+                transform: 'translateX(20px)',
               } as React.CSSProperties
             }
           />
