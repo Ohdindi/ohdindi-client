@@ -103,9 +103,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center space-y-4">
-            <Button onClick={handleUploadContinuity} className="w-full">
-              콘티 분석 시작하기
-            </Button>
+            <Button onClick={handleUploadContinuity}>콘티 분석 시작하기</Button>
             <Button onClick={() => router.push('/projects')}>
               내 프로젝트 보기
             </Button>
