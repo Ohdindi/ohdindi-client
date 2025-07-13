@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { signOut, useSession } from 'next-auth/react';
 
-import { SignOut } from 'phosphor-react';
+import { CaretDown, SignOut } from 'phosphor-react';
 
 import Avatar from './Avatar';
 
@@ -21,11 +21,11 @@ export default function AccountButton() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <button
         type="button"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="flex items-center space-x-2 rounded-full p-2 transition-all duration-200"
+        className="flex cursor-pointer items-center space-x-2 p-2 transition-all duration-200"
       >
         <Avatar
           src={session.user?.image}
@@ -33,21 +33,7 @@ export default function AccountButton() {
         />
 
         {/* Dropdown arrow */}
-        <svg
-          className={`h-3 w-3 text-stone-400 transition-transform duration-200 ${
-            isDropdownOpen ? 'rotate-180' : ''
-          }`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        <CaretDown size={15} weight="fill" className="text-zinc-400" />
       </button>
 
       {/* Dropdown Menu */}
@@ -60,9 +46,9 @@ export default function AccountButton() {
           />
 
           {/* Dropdown content */}
-          <div className="absolute top-full right-0 z-20 mt-2 w-64 rounded-lg bg-white pt-2 shadow-xl dark:bg-black dark:shadow-stone-700">
+          <div className="absolute top-full right-0 z-20 mt-2 w-64 rounded-lg bg-white pt-2 shadow-xl dark:bg-black dark:shadow-zinc-700">
             {/* User info in dropdown */}
-            <div className="px-4 py-3 dark:border-stone-700">
+            <div className="px-4 py-3 dark:border-zinc-700">
               <div className="flex items-center space-x-3">
                 <Avatar
                   src={session.user?.image}
@@ -70,10 +56,10 @@ export default function AccountButton() {
                 />
 
                 <div>
-                  <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
                     {session.user?.name || 'User'}
                   </p>
-                  <p className="text-xs text-stone-500 dark:text-stone-400">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
                     {session.user?.email}
                   </p>
                 </div>
@@ -82,7 +68,7 @@ export default function AccountButton() {
 
             {/* Menu items */}
             <div className="pt-2">
-              <div className="border-t border-stone-100 dark:border-stone-700" />
+              <div className="border-t border-zinc-100 dark:border-zinc-700" />
               <button
                 type="button"
                 onClick={handleSignOut}
@@ -92,7 +78,7 @@ export default function AccountButton() {
                   size={26}
                   color="red"
                   weight="fill"
-                  className="cursor-pointer p-1 transition-colors duration-200 hover:bg-stone-50 dark:hover:bg-stone-800"
+                  className="cursor-pointer p-1 transition-colors duration-200 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 />
                 로그아웃
               </button>
