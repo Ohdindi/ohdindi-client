@@ -90,7 +90,7 @@ export default function Home() {
             <Image
               src={OhdindiWithLocationLogo}
               alt="Ohdindi Logo"
-              className="mx-auto h-auto w-24"
+              className="mx-auto h-auto w-32"
               priority
             />
             <h1 className="text-4xl text-zinc-900 dark:text-zinc-50">어딘디</h1>
